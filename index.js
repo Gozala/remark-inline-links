@@ -43,6 +43,9 @@ function inlineLinks(options) {
 
           parent.children[index] = replacement
           return [visit.SKIP, index]
+        } else if (options && options.unlinkBrokenLinks) {
+          parent.children.splice(index, 1, ...(node.children || []))
+          return index
         }
       }
     }
